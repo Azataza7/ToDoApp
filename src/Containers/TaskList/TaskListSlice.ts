@@ -26,7 +26,7 @@ const tasksSlice = createSlice({
   reducers: {
     markTaskAsCompleted(state, action: PayloadAction<string>) {
       const taskId = action.payload;
-      const taskToComplete = state.tasks.find((task) => task.id === taskId);
+      const taskToComplete: Task = state.tasks.find((task) => task.id === taskId);
       if (taskToComplete) {
         taskToComplete.status = !taskToComplete.status;
       }

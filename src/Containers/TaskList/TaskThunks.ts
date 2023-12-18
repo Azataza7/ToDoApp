@@ -23,7 +23,7 @@ export const fetchTasks = createAsyncThunk<Task[], void>(
   async () => {
     const response = await axiosApi.get<TaskJson>('/tasks.json');
     const data = response.data;
-    const taskList =  Object.keys(data).map((taskId) => ({
+    const taskList: Task[] =  Object.keys(data).map((taskId) => ({
       id: taskId,
       ...data[taskId]
     }));

@@ -30,8 +30,8 @@ export const fetchTasks = createAsyncThunk<Task[], void>(
     return taskList.reverse()
   });
 
-export const deleteTask = createAsyncThunk<void, number>(
+export const deleteTask = createAsyncThunk<void, string>(
   'tasks/deleteTask',
-  async (id: number) => {
+  async (id: string) => {
     await axiosApi.delete(`/tasks/${id}.json`);
   });

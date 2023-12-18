@@ -24,11 +24,11 @@ const tasksSlice = createSlice({
   name: 'tasksList',
   initialState,
   reducers: {
-    markTaskAsCompleted(state, action: PayloadAction<number>) {
+    markTaskAsCompleted(state, action: PayloadAction<string>) {
       const taskId = action.payload;
       const taskToComplete = state.tasks.find((task) => task.id === taskId);
       if (taskToComplete) {
-        taskToComplete.status = true;
+        taskToComplete.status = !taskToComplete.status;
       }
     },
   },
@@ -42,9 +42,9 @@ const tasksSlice = createSlice({
       state.loading = false;
       state.error = null;
     });
-    builder.addCase(fetchTasks.rejected, (state: TasksState, action: PayloadAction<string>) => {
+    builder.addCase(fetchTasks.rejected, (state: TasksState) => {
       state.loading = false;
-      state.error = action.payload ?? 'Error';
+      state.error = 'Something got wrong';
     });
   }
 });
